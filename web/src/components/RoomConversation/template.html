@@ -1,0 +1,18 @@
+<ul class="list-unstyled">
+  <BMedia tag="li" class="text-center">
+    <small class="mt-0 mb-1 text-muted">{{ conversationDate }}</small>
+  </BMedia>
+  <BMedia tag="li" v-for="(item, index) of items" :key="index" class="mt-2">
+    <BImg slot="aside" blank blank-color="#abc" rounded="circle" width="42" alt="placeholder" />
+
+    <div>
+      <small class="mt-0 mb-1 text-info">{{ time(item.date) }}</small>
+      <small class="mt-0 mb-1 text-dark"> ID: </small>
+      <small class="mt-0 mb-1 text-muted">{{ item.userId }}</small>
+    </div>
+    <div>
+
+    </div>
+    <p class="mb-0">{{ item.message }}</p>
+  </BMedia>
+</ul>

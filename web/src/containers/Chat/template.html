@@ -1,0 +1,33 @@
+<div>
+  <LayoutMain
+    :sideBarMenuItems="sideBarMenuItems"
+    @onButtonSearchClick="onButtonSearchClick"
+    @onAddSideBarMenuItem="onAddSideBarMenuItem"
+    @onClickSideBarMenuItem="onClickSideBarMenuItem"
+    @onClickRemoveSideBarMenuItem="onClickRemoveSideBarMenuItem"
+  >
+
+    <template v-if="isScreenOpened('create-room')">
+      <RoomCreateForm @create="onCreateRoom" @close="prevScreen" />
+    </template>
+
+    <template v-if="isScreenOpened('dialog-room')">
+      <LayoutHeader :title="title" />
+      <RoomConversation :items="conversation" />
+      <RoomConversationForm @send="sendMessage" class="my-4" />
+    </template>
+
+    <BModal v-model="searchModal.show">
+      {{ searchModal.msg }}
+      <template slot="modal-footer" slot-scope="{ ok, cancel }">
+        <BButton size="sm" @click="ok()" v-if="searchModal.confirm">
+          OK
+        </BButton>
+        <BButton size="sm" variant="danger" @click="cancel()">
+          Cancel
+        </BButton>
+      </template>
+    </BModal>
+
+  </LayoutMain>
+</div>

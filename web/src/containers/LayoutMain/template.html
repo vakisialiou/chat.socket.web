@@ -1,0 +1,13 @@
+<div class="chat container-fluid">
+  <Header appName="WebSocket Chat" inputPlaceholder="Room or User key" @onButtonClick="onButtonSearchClick" />
+  <SideBarMenu
+    @click="onClickSideBarMenuItem"
+    @remove="onClickRemoveSideBarMenuItem"
+    @add="onAddSideBarMenuItem"
+    :items="sideBarMenuItems"
+  />
+
+  <LayoutContent>
+    <slot></slot>
+  </LayoutContent>
+</div>

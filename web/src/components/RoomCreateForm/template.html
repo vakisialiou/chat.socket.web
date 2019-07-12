@@ -1,0 +1,13 @@
+<BCard class="mt-3">
+  <template slot="header">
+    <div class="d-flex justify-content-between align-items-center">
+      <span>Create room</span>
+      <BButton size="sm" variant="link" @click="onClose">Close</BButton>
+    </div>
+  </template>
+  <label for="room-name">Room name</label>
+  <BFormInput id="room-name" v-model="roomName" size="sm" />
+  <div class="float-right">
+    <BButton size="sm" class="mt-2" @click="onCreate">Create</BButton>
+  </div>
+</BCard>
