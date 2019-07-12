@@ -8,7 +8,7 @@ db:
     connectionLimit: 10
 server:
   host: localhost
-  port: 5100
+  port: 5000
 redis:
   key: socket.io
   host: localhost

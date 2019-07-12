@@ -68,7 +68,7 @@ export default {
 
 
       const query = queryString.parse(window.location.search)
-      const port = objectPath.get(query, 'socketPort', 5111)
+      const port = objectPath.get(query, 'socketPort', 5001)
       socket = io.connect(`http://localhost:${port}/chat`)
       const rooms = res.rooms.map((item) => item.publicKey)
 
