@@ -1,4 +1,4 @@
-import emitter from 'socket.io-emitter'
+const emitter = require('socket.io-emitter')
 
 const io = emitter({ host: 'localhost', port: 6379 })
 
