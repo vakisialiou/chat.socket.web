@@ -11,18 +11,18 @@ import { eachRout } from './lib/init-routes'
 const app = express()
 let RedisStore = redisStore(expressSession)
 let session = expressSession({
-  store: new RedisStore({}),
-  secret: '8ae49100-ec0c-4a2f-9e4c-e7b39dae61c5',
+  store: new RedisStore({ port: core.config.redis.port, host: core.config.redis.host }),
+  secret: '8ae49100-ec0c-4a2f-9e4c-e7b39dae61c4',
   resave: false,
   saveUninitialized: false
-});
+})
 
 app.use(session);
 app.use(defaultHeaders)
 app.use(initHeadersValue)
 app.use(bodyParser.json({ limit: '50mb' }))
 app.use(bodyParser.urlencoded({ limit: '50mb', parameterLimit: 50000, extended: true }))
-app.use(express.static('build'))
+app.use(express.static(core.config.buildPath))
 app.use(express.static('web'))
 
 eachRout(routes, (route) => {
