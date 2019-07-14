@@ -39,6 +39,13 @@ const config = {
   module: {
     rules: [
       {
+        test: /\.yml$/,
+        use: [
+          'json-loader',
+          'yaml-frontmatter-loader'
+        ]
+      },
+      {
         test: [
           /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
           /\.(gif|png|jpe?g|svg)$/

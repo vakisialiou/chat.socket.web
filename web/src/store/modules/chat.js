@@ -3,7 +3,7 @@ import Storage from '@lib/Storage'
 import uuid from 'uuid/v4'
 import io from 'socket.io-client'
 import objectPath from 'object-path'
-import queryString from 'query-string'
+import { SOCKET_URL } from '../../config'
 
 let socket
 
@@ -66,14 +66,16 @@ export default {
       commit('setRooms', res.rooms)
       commit('setMessages', res.messages)
 
-
-      const query = queryString.parse(window.location.search)
-      const port = objectPath.get(query, 'socketPort', 5001)
-      socket = io.connect(`http://localhost:${port}/chat`)
+      socket = io.connect(`${SOCKET_URL}/chat`)
       const rooms = res.rooms.map((item) => item.publicKey)
 
       socket.on('connect', () => {
         socket.emit('initialization', { rooms })
+
+        socket.on('reconnect_attempt', () => {
+          console.log('===========')
+          socket.io.opts.transports = ['polling', 'websocket'];
+        })
 
         socket.on('add-message', (data) => {
           commit('addMessage', data)

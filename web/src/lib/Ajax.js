@@ -1,6 +1,6 @@
 import qs from 'query-string'
 import fetch from 'node-fetch'
-import { API_URL } from './../config'
+import { API_URL } from '../config'
 
 class Ajax {
 
